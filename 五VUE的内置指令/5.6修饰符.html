@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width= , initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>修饰符</title>
+  
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    stop用法：<br>
+    <div @click.self="divClick" style="background-color: cadetblue; width: 100px; height: 100px;">
+      <button @click.stop="btnClick">点击</button>
+    </div>
+    prevent用法：<br>
+    <form action="" method="post" @submit.prevent="handle">
+      <button  type="submit">点击</button>
+    </form>
+    once：<br>
+    <button @click="onceMethod">无数次</button>
+    <button @click.once="onceMethod">一次</button>
+    <hr>
+    监听键盘事件 <br>
+    <input type="text" @keyup.13="sumitMe">
+    <input type="text" @keyup.enter="sumitMe">
+  </div>
+  <script>
+    
+    var app = new Vue({
+      el: '#app',
+      data: {
+        count: 0
+      },
+      methods: {
+        divClick: function(){
+          alert('div被点击')
+        },
+        btnClick: function(){
+          alert('btn被点击')
+        },
+        handle:function(){
+          alert('不重载，页面也不刷新了')
+        },
+        onceMethod: function(){
+          alert('多少次了')
+        },
+        sumitMe: function(){
+          alert('按下了enter')
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

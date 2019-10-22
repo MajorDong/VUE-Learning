@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width= , initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>v-for指令</title>
+  <style>
+    
+  </style>
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    v-for的用法：v-for一定是写在要遍历的元素上，后接等号<br>
+    1.遍历多个对象,一定是数组<br>
+    学好vue的方法是
+    <ul>
+      <li v-for="vueMeth in vueMethods">{{vueMeth.name}}</li>
+    </ul><br>
+    带索引的写法，拿到index：括号的第一个变量，代表item，第二个变量代表index
+    <ul>
+      <li v-for="(vueMeth, index) in vueMethods">{{index}} -> {{vueMeth.name}}</li>
+    </ul>
+    <hr>
+    2.遍历一个对象多个属性：
+    <span v-for="value in cars">{{value + ' '}}</span> <br>
+    拿到v-k-i的写法
+    <div v-for="(value,key,index) in cars">第{{index}}车，键是{{key}}->{{value}}</div>
+  </div>
+  <script>
+    
+    var app = new Vue({
+      el: '#app',
+      data: {
+        vueMethods: [
+          {name:'一'},
+          {name:'二'},
+          {name:'三'}
+        ],
+        cars: {
+          car1: 'bmw',
+          car2: 'benz',
+          car3: 'porsche',
+        }
+
+      }  
+    })
+  </script>
+</body>
+
+</html>

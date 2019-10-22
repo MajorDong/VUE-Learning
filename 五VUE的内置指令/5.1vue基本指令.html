@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width= , initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>基本指令</title>
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    v-cloak解决初始化慢导致页面闪动,在vue实例加载完后再进行页面渲染，避免出现{{msg}}的情况 <br>
+    <p v-cloak>{{msg}}</p>
+    v-once定义它的元素和页面只渲染一次，在控制台中改变数据也无法渲染
+    <span v-once>{{oncedata}}</span>
+  </div>
+  <script>
+    
+    new Vue({
+      el: '#app',
+      data: {
+        msg: '有一个饼饼猪',
+        oncedata:'有一个咕咕蛋'
+      },
+
+    })
+  </script>
+</body>
+
+</html>

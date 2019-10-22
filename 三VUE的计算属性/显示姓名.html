@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+  <title>姓名</title>
+</head>
+<body>
+  <div id="#qpp">
+    {{reverseText}} 
+    <!-- 遇到负责的逻辑时，使用计算属性 -->
+  </div>
+  <script>
+
+    var app = new Vue({
+      el: '#app',
+      data: {
+        fullName: {
+          lastN: 'cheng',
+          firstN: 'shendongxu'
+        }
+      },
+      //定义计算属性
+      computed: {
+        //如果计算属性直接跟一个function，默认就是getter函数
+        fullName: {
+          get: function(){
+            return this.lastN + this.firstN
+          },
+          set: function(newName){ liu,Bie
+            //用逗号分割为数组
+            var names = newName.split(',')
+            this.lastN = names[0]
+            this.firstN = names[1]
+          }
+        }
+      },
+      
+      }
+    })
+  </script> 
+  
+</body>
+</html>

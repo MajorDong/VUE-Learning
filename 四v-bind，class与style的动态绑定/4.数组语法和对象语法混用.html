@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width= , initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>绑定class</title>
+  <style>
+   
+  </style>
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+</head>
+<body>
+  <!-- v-bind作用是绑定活得属性 -->
+  <div id="app">
+    <!-- 数组对象混用，第一个成员是对象，第二个成员是数组成员。 -->
+    <div :class="[{active: isActive},errorClass]"></div>
+  </div>
+  <script>
+    //需求：点击一饿按钮，来回切换背景颜色
+      new Vue({
+        el: '#app',
+        data: {
+          isActive: true, //一个灵活
+          errorClass: 'error' //一个固定
+        },
+        
+      })
+  </script>
+</body>
+</html>

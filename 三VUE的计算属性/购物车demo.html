@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+  <title>购物车demo</title>
+</head>
+<body>
+  <div id="demo">
+    总价格：{{allPrices}}
+  </div>
+  <script>
+    var app2 =new Vue({
+      el: '#aaa',
+      data: {
+        msg: '这是app2'
+      }
+    })
+
+    var app = new Vue({
+      el: '#demo',
+      data: {
+        package1: [
+          {
+            name: 'iPhone',
+            price: 6999,
+            count: 2,
+          },
+          {
+            name: 'iPad',
+            price: 4888,
+            count: 1
+          }
+        ],
+        package2: [
+          {
+            name: 'mate30',
+            price: 3999,
+            count: 3,
+          },
+          {
+            name: 'nova5',
+            price: 2999,
+            count: 1,
+          }
+        ]
+      },
+      //定义计算属性
+      computed: {
+        allPrices: function(){
+          var prices = 0
+          for(i=0;i < this.package1.length;i++){
+            prices += this.package1[i].price * this.package1[i].count
+          }
+          for(j=0; j<this.package2.length; j++){
+            prices += this.package2[j].price * this.package2[j].count
+          }
+          return prices + app2.msg
+        }
+      }
+    })
+  </script> 
+  
+</body>
+</html>

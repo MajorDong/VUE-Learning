@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>页面中事实显示当前时间</title>
+  <style>
+    .active{
+      background: darkgray;
+    }
+  </style>
+</head>
+<body>
+  <div id="dataApp">
+    {{dae}}
+    {{date}| formatDate(66, 99)}
+    <span v-text="apple"></span> //以属性的值引入v-text，文本字符串 
+    <span v-html="lemon"></span> //将字符串解析为html
+    <div v-bind:class="className"></div>
+    <button v-on:click="count"></button>
+  </div>
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+  <script>
+   
+    var app = new Vue({
+      el: "#dataApp",
+      data: {
+        date: new Date(),
+        apple: '苹果',
+        lemon: '<span style="color: red">柠檬<span>',
+        className: 'active',
+        countNum: 0
+      },
+      //定义过滤器
+      filters: {
+        formatDate: function(vaule, a, b) {
+          
+        }
+      },
+      methods: {
+        count: function() {
+          this.countNum = this.countNum + 1
+        }
+      },
+      mounted: function() {
+        var _this = this
+        this.timer = setInterval(() => {
+          this.data = new Date()
+        },1000)
+      },
+      beforeDestroy: function(){
+        if(this.timer){
+          clearInterval(this.timer)
+        }
+      }
+    })  
+  </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+  <title>VUE计算属性</title>
+</head>
+<body>
+  <div id="demo">
+    {{now}}
+    {{nowTime()}} 
+    {{text}}
+    <!-- 遇到负责的逻辑时，使用计算属性 -->
+  </div>
+  <script>
+    //需求将'123,456,789'变为‘789，345，123’
+    var app = new Vue({
+      el: '#demo',
+      data: {
+        text: '123,456,789'
+      },
+      //定义计算属性 计算属性缓存
+      computed: {
+        //如果计算属性直接跟一个function，默认就是getter函数
+        reverseText: function(){
+          return this.text.split(',').reverse().join()
+        },
+        now:function(){
+          return Data.now()
+        }
+      },
+      methods: {
+        nowTime: function(){
+          return Date.now()
+        }
+      }  
+    })
+  </script> 
+  
+</body>
+</html>

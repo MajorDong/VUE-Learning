@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width= , initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>绑定class</title>
+  <style>
+    .btnBackground {
+      background-color: green;
+    }
+    .btnBackground1 {
+      background-color: red;
+    }
+    .active {
+      background-color: green;
+      height: 100px;
+      width: 100px;
+    }
+    .error {
+      border: 3px solid black;
+    }
+  </style>
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+</head>
+<body>
+  <!-- v-bind作用是绑定活得属性 -->
+  <div id="app">
+    绑定class对象语法：对象的键是类名，值是布尔值<br>
+    
+    <input type="button" value="点击切换背景" :class={btnBackground:isGreen,btnBackground1:isRed} v-on:click="changeBg">
+    <hr>
+    <!-- 绑定class计算属性 -->
+    <div :class="classNames"></div> 
+    <!-- 绑定class数组语法,数组中的成员直接对应类名在data中-->
+    <div :class="[activeClass,errorClass]">我是数组绑定class</div>
+  </div>
+  <script>
+    //需求：点击一饿按钮，来回切换背景颜色
+      new Vue({
+        el: '#app',
+        data: {
+          isGreen: true,
+          isRed: false,
+          activeClass:'active',
+          errorClass: 'error'
+        },
+        computed: {
+           classNames: function() {
+            return {
+              active: this.isRed && !this.isGreen //用于复杂class逻辑
+            }
+           }        
+        },
+        methods: {
+          changeBg:function(){
+            this.isGreen = !this.isGreen
+            this.isRed = !this.isRed
+          }
+        }
+      })
+  </script>
+</body>
+</html>
