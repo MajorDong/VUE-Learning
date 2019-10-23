@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"   initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>v-model基本用法</title>
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model="value">
+    {{value}}
+    <br>
+    <textarea name="" id="" cols="30" rows="10" v-model="msg">这部分不会被渲染</textarea>
+    {{msg}}
+    <hr>
+    单选框：<br>
+    单个单选框v-bind<input type="radio" name="" id="" v-bind:checked="oneradio"> 
+    v-model不生效<input type="radio" name="" id="" v-model="oneradio">
+    <br>
+    多个单选框：
+    小猫<input type="radio" name="checks" id="" value="小猫" v-model="checkname">
+    小狗<input type="radio" name="checks" id="" value="小狗" v-model="checkname"> 
+    小猪<input type="radio" name="checks" id="" value="小猪" v-model="checkname"> <br>
+    选中的是:{{checkname}}
+    <hr>
+    单个复选框v-bind：<input type="checkbox" v-bind:checked="oneradio">
+    单个复选框v-model：<input type="checkbox" v-model="oneradio">
+    <br>
+    多个复选框
+    小猫<input type="checkbox"  value="小猫" v-model="checks">
+    小狗<input type="checkbox"  value="小狗" v-model="checks"> 
+    小猪<input type="checkbox"  value="小猪" v-model="checks"> <br>
+    现在选中了{{checks}}
+    <hr>
+    单选的下拉框
+    <select v-model="selected" name="" id="" >
+      <option value="小狗">小狗</option>
+      <option value="小猫">小猫</option>
+      <option value="小猪">小猪</option>
+    </select>
+    现在选中的是{{selected}}
+    <br>
+    <br>
+    多选的下拉框
+    <select v-model="selectedmul" name="" id="" multiple>
+      <option value="小狗">小狗</option>
+      <option value="小猫">小猫</option>
+      <option value="小猪">小猪</option>
+    </select>
+    现在选中的是{{selectedmul}}
+    <hr>
+    绑定值
+    单选按钮:
+    <input type="radio" v-model="picked" v-bind:value="value"> {{picked}} 
+    <!-- 123 -->
+    复选按钮
+    <input type="checkbox" name="" id="" v-model="toggle" v-bind:true-value="value1" v-bind:false-value="value2">
+    {{toggle}}
+    {{toggle == value1}}
+    {{toggle == value2}}
+    <hr> 
+    下拉框
+    <select v-model="valueselect" >
+      <option  v-bind:value="{num:111}">小狗</option>
+      <option value="小猫">小猫</option>
+      <option value="小猪">小猪</option>
+    </select>
+    现在选中的是{{typeof valueselect}} -> {{valueselect}}
+    <hr>
+    修饰符
+    lazy:
+    <input type="text" v-model.lazy="lazyStr"> {{lazyStr}}
+    number:
+    <input type="text" v-model.number="isNum"> {{typeof isNum}}
+    trim:
+    <input type="text" v-model.trim="trimStr"> {{trimStr.split('').length}}
+  </div>
+ 
+  
+  <script>
+    
+    var app = new Vue({
+      el: '#app',
+      data: {
+        value: '',
+        msg: '',
+        oneradio: true,
+        checkname: '小猫',//多个单选框初始绑定的值 
+        checks:[],//多个复选框绑定数组
+        selected:'', //单选下拉框 '',[]数组都可以
+        selectedmul: [], //自动转为数组
+        picked:'true',
+        //绑定value
+        //单选按钮
+        value: '123', //value的值会转到绑定的v-model
+        //复选按钮
+        toggle: true, //:true-value="value1" :false-value="value2"两个属性来控制
+        value1: '我被选中',
+        value2:'我未被选中',
+        //下拉框
+        valueselect: '',
+        lazyStr: '', //v-model不实时渲染
+        isNum:'', //字符串还是字符串，数字转未number
+        trimStr: '' //自动过滤字符串首位空格
+      },
+
+    })
+  </script>
+</body>
+
+</html>
