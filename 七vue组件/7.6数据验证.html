@@ -9,28 +9,27 @@
 </head>
 <body>
   <div id="app">
-    <app-component></app-component>
+    <app-component my-msg="lalala"></app-component>
   </div>
   <script>
     
     var app = new Vue({
       el:'#app',
       data: {
-
+         
       },
       //
       components:{
         'app-component': {
-          template: '<div>我是组件的内容</div>'
-        },
-        'btn-component': {
-          template: '<button @click="count++">{{count}}</button>',
-          data:function(){ //data函数封装数据
+          props:['myMsg'],
+          template: '<div>{{myMsg}}{{abc}}</div>',
+          data: function(){
             return{
-              count:0
+              abc:this.myMsg
             }
           }
-        }
+        },
+        
       }
     })
   </script>
