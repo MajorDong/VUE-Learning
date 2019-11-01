@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+  <title>自定义事件</title>
+</head>
+<body>
+  <div id="app">
+    <p>您的余额为{{total}}元</p>
+    <btn-component @change="handletotal"></btn-component>
+  </div>
+  <script>
+    //需求：通过加号和键号按钮来给父组件传递数据
+    
+    var app = new Vue({
+      el:'#app',
+      data: {
+        total: 1000
+      },
+      methods:{
+        //这里的函数参数就是emit出来的数据，可以有多个
+        handletotal: function(value){
+          this.total = value
+        }
+      },
+      //
+      components:{
+        'my-acomponent': {
+          template: '<div>\
+            <button @click="handleincrease"> +1000</button>\
+            <button @click="handlereduce"> -1000</button>\
+          </div>',
+          data: function(){
+            return{
+              count: 1000
+            }
+          },
+          methods: {
+            handleincrease: function(){
+              this.count = this.count + 1000
+              this.$emit('change',this.count)
+            },
+            handlereduce: function(){
+              this.count = this.count - 1000
+              this.$emit('change',this.count)
+            }
+          }
+        },
+        
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+  <title>自定义事件</title>
+</head>
+<body>
+  <div id="app">
+    
+    <my-component >
+      <!-- <template slot="abc" slot-scope="cyj">
+      {{cyj.text}}
+      {{cyj.ss}}
+      </template> -->
+      <!-- 上面的已经过时了 -->
+      <p slot="abc" slot-scope="cyj">
+          {{cyj.text}}
+          {{cyj.ss}}
+      </p>
+    </my-component>
+  </div>
+  <script>
+    
+    
+    var app = new Vue({
+      el:'#app',
+      data: {
+        
+      },
+      methods:{
+        
+      },
+      //
+      components:{
+        'my-component': {
+          template: '<div>\
+            <slot text="我是来自子组件的数据" ss="sdfefdfsd" name="abc">\
+            </slot>\
+          </div>',
+          data: function(){
+            return{
+             
+            }
+          },
+          
+        },
+        
+      }
+    })
+  </script>
+</body>
+</html>
