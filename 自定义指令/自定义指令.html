@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+  <title>自定义指令</title>
+</head>
+<body>
+  <div id="app">
+    获取焦点：<input type="text" v-f>
+    <input type="text" v-test="abc">
+    <hr>
+    <div v-sdx:duck.a.b.c="ccc"></div>
+    <div></div>
+  </div>
+  <script>
+    Vue.directive('f',{
+      //指令的选项，插入到父节点的时候就调用
+      inserted:function(el){
+        el.focus()
+      }
+    })
+    Vue.directive('sdx',{
+      
+      bind:function(el,binding,vonde){
+        
+        var name = binding.name //sdx
+        var value = binding.value // 加油
+        var expression = binding.expression // ccc
+        var argument = binding.arg //duck
+        var modifiers = JSON.stringify(binding.modifiers) //{"a":true,"b":true,"c":true}
+        console(name)
+      }
+    })
+    var app = new Vue({
+      el:'#app',
+      data: {
+        abc:'我是value',
+        ccc:'加油'
+      }
+      
+        
+    })
+  </script>
+</body>
+</html>
