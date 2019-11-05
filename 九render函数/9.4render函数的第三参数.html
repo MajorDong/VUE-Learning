@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+  <title>render函数第二个参数</title>
+</head>
+
+<body>
+  <div id="app">
+    <child></child>
+  </div>
+
+  <script>
+    //使用render函数进行定义组件
+    Vue.component('child',{
+      //第三个参数可选，作为构建函数的子节点来使用
+      render:function(createElement){ //createElement是一个方法
+        //String | Arrar
+        return createElement('div',[
+          createElement('h1','我是h1标题'),
+          createElement('h2','我是h2标题')
+        ])
+      },
+      
+    })
+    var app = new Vue({
+      el: '#app',
+      data: {
+       
+      },
+     
+      // }
+
+
+      })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+  <title>作用域插槽在render函数中</title>
+</head>
+
+<body>
+  <div id="app">
+    <my-component>
+      <template slot-scope="prop">
+        {{prop.text}}
+        {{prop.msg}}
+      </template>
+    </my-component>
+  </div>
+
+  <script>
+    //
+    Vue.component('my-component', {
+      render:function(createElement){
+        //相当于<div> <slot :text="text"></slot></div>
+        return createElement('div',this.$scopedSlots.default({
+          text: '我是子组件传递的数据',
+          msg: 'scopetext' //对象
+        }))
+        
+      }
+    })
+
+
+
+    var app = new Vue({
+      el: '#app',
+      data: {
+
+      },
+    
+
+
+    })
+  </script>
+</body>
+
+</html>

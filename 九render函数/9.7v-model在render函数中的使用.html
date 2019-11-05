@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+  <title>v-model在render函数中</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- <my-component :name="name" @input="showName"></my-component> -->
+    <my-component :name="name" v-model="name"></my-component>
+  </div>
+
+  <script>
+    //
+    Vue.component('my-component',{
+      props:['name'],
+      render:function(createElement){ //createElement是一个方法
+        var self = this //指的就是当前Vue实例
+        return createElement('input',{
+          domProps:{
+            value: self.name
+          },
+          on:{
+            input: function(event){
+              debugger
+              var a = this //此处的this指向window
+              self.$emit('input',event.target.value)
+            }
+          }
+        })
+      },
+      
+    })
+    var app = new Vue({
+      el: '#app',
+      data: {
+        name:'jack'
+      },
+      // methods: {
+      //   showName: function(value){
+      //     this.name = value
+      //   }
+      // }
+      // }
+
+
+      })
+  </script>
+</body>
+
+</html>

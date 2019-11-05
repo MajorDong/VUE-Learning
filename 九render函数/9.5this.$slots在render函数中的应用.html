@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+  <title>slot在render函数中的应用</title>
+</head>
+
+<body>
+  <div id="app">
+    <my-component>
+      <p>我是第一句</p>
+      <p>我是第二句</p>
+      <h3 slot="header">我是标题</h3>
+      <h6 slot="footer">我是最后一段</h6>
+    </my-component>
+  </div>
+
+  <script>
+    //使用render函数进行定义组件
+    Vue.component('my-component',{
+      //第三个参数可选，存的就是vnode作为构建函数的子节点来使用
+      render:function(createElement){ //createElement是一个方法
+        //String | Arrar
+        var header = this.$slots.header//返回的内容就是含有vnode的数组
+        var main = this.$slots.default
+        var footer = this.$slots.footer
+        return createElement('div',[
+          createElement('header',header), //返回的就是vnode
+          createElement('main',main),
+          createElement('footer',footer)
+        ])
+      },
+      
+    })
+    var app = new Vue({
+      el: '#app',
+      data: {
+       
+      },
+     
+      // }
+
+
+      })
+  </script>
+</body>
+
+</html>

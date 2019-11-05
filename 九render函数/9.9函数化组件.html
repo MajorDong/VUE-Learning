@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+  <title>作用域插槽在render函数中</title>
+</head>
+
+<body>
+  <div id="app">
+    <my-component value="hahaha">
+      
+    </my-component>
+  </div>
+
+  <script>
+    //
+    Vue.component('my-component', {
+      functional: true,//表示当前的VUE实例无状态，无实例无this
+      props: ['value'],
+      render:function(createElement,context){
+        return createElement('button',{
+          on: {
+            click: function(){
+              console.log(context)
+              console.log(context.parent)
+              console.log(context.parent.msg)
+              console.log(context.props.value)
+            }
+          }
+        },'点击学习context')
+        
+      }
+    })
+
+
+
+    var app = new Vue({
+      el: '#app',
+      data: {
+        msg:'我是父组件内容'
+      },
+    
+
+
+    })
+  </script>
+</body>
+
+</html>
